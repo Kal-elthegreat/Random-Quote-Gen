@@ -55,18 +55,22 @@ printQuote = () => {
     displayYear.textContent = selectQuote.year;
     paragraph.appendChild(displayYear);
   }
-  if(body.style.backgroundColor != '#000'){
-    body.style.backgroundColor = '#000'
-  } else if (body.style.backgroundColor = '#000'){
-    body.style.backgroundColor = '#ee5253'
 }
-}
-// changeColor = () => {
+
+
+document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+
+
+/*********************** IGNORE CODE BELOW. COLOR CHANGE FUNCTION ATTEMPTS INCOMPLETE */
 //   if(body.style.backgroundColor != '#000'){
 //     body.style.backgroundColor = '#000'
 //   } else if (body.style.backgroundColor = '#000'){
 //     body.style.backgroundColor = '#ee5253'
 // }
-
-
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+// }
+//  changeColor = () => {
+//  if(body.style.backgroundColor != '#000'){
+//      body.style.backgroundColor = '#000'
+//    } else if (body.style.backgroundColor = '#000'){
+//      body.style.backgroundColor = '#ee5253'
+//  }
