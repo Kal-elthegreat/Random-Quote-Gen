@@ -7,3 +7,7 @@ Updated Jan 13 2020
 I am going to build on my original RQG:
 
 2. show random colors on each click along with the new quote.
+
+Update Jan 14 2020
+
+3. show new quote after select amount of time (5 secs)
