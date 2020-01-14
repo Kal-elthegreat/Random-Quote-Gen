@@ -25,40 +25,53 @@ year: 1980}
 // Selects random obj in array
 getRandomQuote = () => {
   let r = Math.floor(Math.random() * quotes.length); // selects random number
- const random = quotes[r]; // selects obj in array
-return random;
+  const random = quotes[r]; // selects obj in array
+  return random;
+};
+
+changeBackgroundColor = () => {
+  // generate random rgb color
+  var r = Math.floor(Math.random() * 256);
+  var g = Math.floor(Math.random() * 256);
+  var b = Math.floor(Math.random() * 256);
+  rgb = `rgb(${r},${g},${b})`;
+
+  // assign new color 
+  button = document.querySelector('#loadQuote');
+  button.style.backgroundColor = rgb;
+  document.body.style.backgroundColor = rgb;
 }
 
-const quoteBox = document.getElementById('quote-box');
-const paragraph = quoteBox.lastElementChild;
-const displayCite = paragraph.firstElementChild; 
-const displayYear = paragraph.lastElementChild; 
-const body = document.querySelector('body');
+// select elements to use later
+const source = document.querySelector('p.source');
+const displayCite = source.firstElementChild; 
+const displayYear = source.lastElementChild; 
 
 // Prints to page
 printQuote = () => {
 
+  changeBackgroundColor();
   selectQuote = getRandomQuote(); // assigns random quote obj
   
-  const displayQuote = document.querySelector('.quote');
-  const displaySource = document.querySelector('.source');
+  displayQuote = document.querySelector('.quote');
+  displaySource = document.querySelector('.source');
    
   displayQuote.textContent = selectQuote.quote; // selects obj property quote
   displaySource.textContent = selectQuote.source; // selects obj property source
 
-
-  if (selectQuote.hasOwnProperty('cite')){
+  // Let's make this block more dry
+  if (selectQuote.hasOwnProperty('cite')) {
     displayCite.textContent = selectQuote.cite;
-    paragraph.appendChild(displayCite);
-  }
-  if(selectQuote.hasOwnProperty('year')){
+    source.appendChild(displayCite);
+  } 
+  if (selectQuote.hasOwnProperty('year')) {
     displayYear.textContent = selectQuote.year;
-    paragraph.appendChild(displayYear);
+    source.appendChild(displayYear);
   }
+  //////
 }
 
-
-document.getElementById('loadQuote').addEventListener("click", printQuote, false);
+document.getElementById('loadQuote').addEventListener("click", printQuote);
 
 
 /*********************** IGNORE CODE BELOW. COLOR CHANGE FUNCTION ATTEMPTS INCOMPLETE */
