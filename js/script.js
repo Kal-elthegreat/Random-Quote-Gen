@@ -9,6 +9,8 @@ FSJS project 1 - A Random Quote Generator
 const quotes = [
 {quote:'The key is not the will to win… everybody has that. It is the will to prepare to win that is important.',
 source:'Bobby Knight'},
+{quote:'The Marathon Continues.',
+source:'Nipsey Hussle'},
 {quote:'I hated every minute of training, but I said, "Don\’t quit. Suffer now and live the rest of your life as a champion."',
 source:'Muhammad Ali'},
 {quote:'The first step toward success is taken when you refuse to be a captive of the environment in which you first find yourself.',
@@ -19,8 +21,18 @@ cite:'V for Vendetta'},
 {quote:'Here\'s Johnny!',
 source:'Jack Nicholson',
 cite: 'The Shining',
-year: 1980}
+year: 1980},
+{quote:'When failure is not an option success becomes inevitable',
+source:'Unknown',
+cite: 'Make Real Estate Real',
+year: 2020}
 ];
+
+// select elements to use later
+const button = document.querySelector('#loadQuote');
+const source = document.querySelector('p.source');
+const displayCite = source.firstElementChild; 
+const displayYear = source.lastElementChild;
 
 // Selects random obj in array
 getRandomQuote = () => {
@@ -37,15 +49,21 @@ changeBackgroundColor = () => {
   rgb = `rgb(${r},${g},${b})`;
 
   // assign new color 
-  button = document.querySelector('#loadQuote');
   button.style.backgroundColor = rgb;
   document.body.style.backgroundColor = rgb;
 }
 
-// select elements to use later
-const source = document.querySelector('p.source');
-const displayCite = source.firstElementChild; 
-const displayYear = source.lastElementChild; 
+checkToDisplay = (quoteObj) => {
+  if (quoteObj.hasOwnProperty('cite')) {
+    displayCite.textContent = quoteObj.cite;
+    source.appendChild(displayCite);
+  }
+  if (quoteObj.hasOwnProperty('year')) {
+    displayYear.textContent = quoteObj.year;
+    source.appendChild(displayYear);
+  }
+}
+
 
 // Prints to page
 printQuote = () => {
@@ -54,36 +72,15 @@ printQuote = () => {
   selectQuote = getRandomQuote(); // assigns random quote obj
   
   displayQuote = document.querySelector('.quote');
-  displaySource = document.querySelector('.source');
-   
+  displaySource = document.querySelector('.source'); 
   displayQuote.textContent = selectQuote.quote; // selects obj property quote
   displaySource.textContent = selectQuote.source; // selects obj property source
 
-  // Let's make this block more dry
-  if (selectQuote.hasOwnProperty('cite')) {
-    displayCite.textContent = selectQuote.cite;
-    source.appendChild(displayCite);
-  } 
-  if (selectQuote.hasOwnProperty('year')) {
-    displayYear.textContent = selectQuote.year;
-    source.appendChild(displayYear);
-  }
-  //////
+  checkToDisplay(selectQuote);
 }
 
-document.getElementById('loadQuote').addEventListener("click", printQuote);
+window.setInterval(function () {
+  printQuote();
+},5000);
 
-
-/*********************** IGNORE CODE BELOW. COLOR CHANGE FUNCTION ATTEMPTS INCOMPLETE */
-//   if(body.style.backgroundColor != '#000'){
-//     body.style.backgroundColor = '#000'
-//   } else if (body.style.backgroundColor = '#000'){
-//     body.style.backgroundColor = '#ee5253'
-// }
-// }
-//  changeColor = () => {
-//  if(body.style.backgroundColor != '#000'){
-//      body.style.backgroundColor = '#000'
-//    } else if (body.style.backgroundColor = '#000'){
-//      body.style.backgroundColor = '#ee5253'
-//  }
+button.addEventListener("click", printQuote);
