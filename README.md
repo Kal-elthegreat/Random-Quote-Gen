@@ -1,4 +1,4 @@
-# TechDegree Project 1
+# TechDegree Project 1: RANDOM QUOTE GENERATOR
 This project is a random quote generator that I created as a project from Treehouse that was completed Dec. 2018. The RQG (Random quote generator) should:
 
 1. select a new quote from an array of quotes with each click.
